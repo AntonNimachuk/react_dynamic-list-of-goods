@@ -9,11 +9,21 @@ import * as goodsAPI from './api/goods';
 export const App: React.FC = () => {
   const [pickedGoods, setPickedGoods] = useState<Good[]>([]);
 
-  const handleLoadAll = () => {goodsAPI.getAll().then(goods => setPickedGoods(goods))};
+  const handleLoadAll = () => {goodsAPI.getAll()
+    .then(goods => setPickedGoods(goods))
+    .catch(error => {
+    console.error('Failed to load goods:', error)}
+  )};
 
-  const handleLoad5First = () => {goodsAPI.get5First().then(goods => setPickedGoods(goods))};
+  const handleLoad5First = () => {goodsAPI.get5First()
+    .then(goods => setPickedGoods(goods))
+    .catch(error => {console.error('Failed to load goods:', error)}
+  )};
 
-  const handleLoadReadGoods = () => {goodsAPI.getRedGoods().then(goods => setPickedGoods(goods))};
+  const handleLoadReadGoods = () => {goodsAPI.getRedGoods()
+    .then(goods => setPickedGoods(goods))
+    .catch(error => {console.error('Failed to load goods:', error)}
+  )};
  
 
   return (
